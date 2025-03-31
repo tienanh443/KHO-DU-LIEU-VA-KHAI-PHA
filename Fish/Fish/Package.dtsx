@@ -1,0 +1,2145 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/11/2025 1:32:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ANH"
+  DTS:CreatorName="ANH\tiena"
+  DTS:DTSID="{E03A3F59-5BB9-4423-A66A-C084FA77B172}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{57E92361-CA27-450B-BAB6-DDCF21A9C489}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ANH\ANH.Fish.sa]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{DB423337-5AA4-4B64-92E6-0C212F19E855}"
+      DTS:ObjectName="ANH\ANH.Fish.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ANH\ANH;User ID=sa;Initial Catalog=Fish;Application Name=SSIS-Package-{DB423337-5AA4-4B64-92E6-0C212F19E855}ANH\ANH.Fish.sa;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1i36rW/fj0aX0tE7kW662AAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACF6QzM88mEGIx4akrVSufQm/mALqC5wEVjlz7gxZ7CtQAAAAAOgAAAAAIAACAAAACpPgThEqUwzjrx5yzfYBnsa7sdAN2TdoHlahdbTEh8YCAAAACaOa0ZCl5GKZdQvohCyT+7LOEZWWhCD4Dlcr0NfhZNjUAAAAAzg0cPTRRtU3HtAKV80rkRcn0a8gJsatnM9iKSufvuz5Gulqms5Sc6GQEemFhEliWxKf2raXkFyLr++jR3496Q</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{9103CFFE-07A5-4B1D-A9B7-EEE4360DAAD2}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=D:\HỌC TẬP\Kho du lieu va khai pha\data3.xls.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{36563713-5169-4FCA-8FB3-C6AD39135687}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Condition Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Condition Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Condition Destination"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Condition Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ANH\ANH.Fish.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[ANH\ANH.Fish.sa]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].Columns[pH]"
+                      cachedDataType="r8"
+                      cachedName="pH"
+                      externalMetadataColumnId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].ExternalColumns[pH]"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[pH]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].Columns[Temperature]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Temperature"
+                      externalMetadataColumnId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].ExternalColumns[Temperature]"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[Temperature]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].Columns[Food]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Food"
+                      externalMetadataColumnId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].ExternalColumns[Food]"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[Food]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].Columns[Condition_ID]"
+                      cachedDataType="r8"
+                      cachedName="Condition_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].ExternalColumns[Condition_ID]"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[Condition_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].Columns[Product_ID]"
+                      cachedDataType="r8"
+                      cachedName="Product_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].ExternalColumns[Product_ID]"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[Product_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].ExternalColumns[pH]"
+                      dataType="r8"
+                      name="pH" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].ExternalColumns[Temperature]"
+                      dataType="wstr"
+                      length="255"
+                      name="Temperature" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].ExternalColumns[Food]"
+                      dataType="wstr"
+                      length="255"
+                      name="Food" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].ExternalColumns[Condition_ID]"
+                      dataType="r8"
+                      name="Condition_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input].ExternalColumns[Product_ID]"
+                      dataType="r8"
+                      name="Product_ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Condition Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Condition Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Condition Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Condition Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Condition Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Price Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Price Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Price Destination"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Price Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ANH\ANH.Fish.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[ANH\ANH.Fish.sa]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input].Columns[Product_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Product_Name"
+                      externalMetadataColumnId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input].ExternalColumns[Product_Name]"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].Columns[Product_Name]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input].Columns[Price]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Price"
+                      externalMetadataColumnId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price]"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].Columns[Price]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input].Columns[Price_Numeric]"
+                      cachedDataType="r8"
+                      cachedName="Price_Numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price_Numeric]"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].Columns[Price_Numeric]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input].Columns[Price_ID]"
+                      cachedDataType="r8"
+                      cachedName="Price_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price_ID]"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].Columns[Price_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input].ExternalColumns[Product_Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price]"
+                      dataType="wstr"
+                      length="255"
+                      name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price_Numeric]"
+                      dataType="r8"
+                      name="Price_Numeric" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price_ID]"
+                      dataType="r8"
+                      name="Price_ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Price Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Price Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Price Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Price Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Price Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Product Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Product Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Product Destination"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Product Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ANH\ANH.Fish.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[ANH\ANH.Fish.sa]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Product Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Product Destination.Inputs[ADO NET Destination Input].ExternalColumns[Product_Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Product Destination.Inputs[ADO NET Destination Input].ExternalColumns[Image_URL]"
+                      dataType="wstr"
+                      length="255"
+                      name="Image_URL" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Product Destination.Inputs[ADO NET Destination Input].ExternalColumns[Product_ID]"
+                      dataType="r8"
+                      name="Product_ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Product Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\Product Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Product Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Product Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Product Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Product Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Promotions Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Promotions Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Promotions Destination"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Promotions Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ANH\ANH.Fish.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[ANH\ANH.Fish.sa]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].Columns[Product_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Product_Name"
+                      externalMetadataColumnId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Product_Name]"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Product_Name]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].Columns[Raw_Stock_Quantity]"
+                      cachedDataType="r8"
+                      cachedName="Raw_Stock_Quantity"
+                      externalMetadataColumnId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Raw_Stock_Quantity]"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Raw_Stock_Quantity]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].Columns[Price]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Price"
+                      externalMetadataColumnId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price]"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Price]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].Columns[Product_ID]"
+                      cachedDataType="r8"
+                      cachedName="Product_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Product_ID]"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Product_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].Columns[Price_ID]"
+                      cachedDataType="r8"
+                      cachedName="Price_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price_ID]"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Price_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].Columns[Price_Numeric]"
+                      cachedDataType="r8"
+                      cachedName="Price_Numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price_Numeric]"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Price_Numeric]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].Columns[Stock_Quantity]"
+                      cachedDataType="r8"
+                      cachedName="Stock_Quantity"
+                      externalMetadataColumnId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Stock_Quantity]"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Stock_Quantity]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Product_Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Raw_Stock_Quantity]"
+                      dataType="r8"
+                      name="Raw_Stock_Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price]"
+                      dataType="wstr"
+                      length="255"
+                      name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Product_ID]"
+                      dataType="r8"
+                      name="Product_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price_ID]"
+                      dataType="r8"
+                      name="Price_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price_Numeric]"
+                      dataType="r8"
+                      name="Price_Numeric" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input].ExternalColumns[Stock_Quantity]"
+                      dataType="r8"
+                      name="Stock_Quantity" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Promotions Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Promotions Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Promotions Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Promotions Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Sales Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Sales Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Sales Destination"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Sales Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ANH\ANH.Fish.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[ANH\ANH.Fish.sa]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Sales Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Sales Destination.Inputs[ADO NET Destination Input].ExternalColumns[Product_Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Sales Destination.Inputs[ADO NET Destination Input].ExternalColumns[Raw_Stock_Quantity]"
+                      dataType="r8"
+                      name="Raw_Stock_Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Sales Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price]"
+                      dataType="wstr"
+                      length="255"
+                      name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Sales Destination.Inputs[ADO NET Destination Input].ExternalColumns[Product_ID]"
+                      dataType="r8"
+                      name="Product_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Sales Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price_ID]"
+                      dataType="r8"
+                      name="Price_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Sales Destination.Inputs[ADO NET Destination Input].ExternalColumns[Price_Numeric]"
+                      dataType="r8"
+                      name="Price_Numeric" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Sales Destination.Inputs[ADO NET Destination Input].ExternalColumns[Stock_Quantity]"
+                      dataType="r8"
+                      name="Stock_Quantity" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Sales Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\Sales Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sales Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sales Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sales Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sales Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Source_Condition"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Source_Condition"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Condition$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Source_Condition.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[pH]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].ExternalColumns[pH]"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[pH]"
+                      name="pH"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[Temperature]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].ExternalColumns[Temperature]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[Temperature]"
+                      name="Temperature"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[Food]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].ExternalColumns[Food]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[Food]"
+                      name="Food"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[Condition_ID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].ExternalColumns[Condition_ID]"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[Condition_ID]"
+                      name="Condition_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[Product_ID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].ExternalColumns[Product_ID]"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].Columns[Product_ID]"
+                      name="Product_ID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].ExternalColumns[pH]"
+                      dataType="r8"
+                      name="pH" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].ExternalColumns[Temperature]"
+                      dataType="wstr"
+                      length="255"
+                      name="Temperature" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].ExternalColumns[Food]"
+                      dataType="wstr"
+                      length="255"
+                      name="Food" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].ExternalColumns[Condition_ID]"
+                      dataType="r8"
+                      name="Condition_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output].ExternalColumns[Product_ID]"
+                      dataType="r8"
+                      name="Product_ID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[pH]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[pH]"
+                      name="pH" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[Temperature]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[Temperature]"
+                      name="Temperature" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[Food]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[Food]"
+                      name="Food" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[Condition_ID]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[Condition_ID]"
+                      name="Condition_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[Product_ID]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[Product_ID]"
+                      name="Product_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Source_Price"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Source_Price"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Price$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Source_Price.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].Columns[Product_Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].ExternalColumns[Product_Name]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].Columns[Product_Name]"
+                      name="Product_Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].Columns[Price]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].ExternalColumns[Price]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].Columns[Price]"
+                      name="Price"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].Columns[Price_Numeric]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].ExternalColumns[Price_Numeric]"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].Columns[Price_Numeric]"
+                      name="Price_Numeric"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].Columns[Price_ID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].ExternalColumns[Price_ID]"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].Columns[Price_ID]"
+                      name="Price_ID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].ExternalColumns[Product_Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].ExternalColumns[Price]"
+                      dataType="wstr"
+                      length="255"
+                      name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].ExternalColumns[Price_Numeric]"
+                      dataType="r8"
+                      name="Price_Numeric" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output].ExternalColumns[Price_ID]"
+                      dataType="r8"
+                      name="Price_ID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Error Output].Columns[Product_Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Error Output].Columns[Product_Name]"
+                      name="Product_Name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Error Output].Columns[Price]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Error Output].Columns[Price]"
+                      name="Price" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Error Output].Columns[Price_Numeric]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Error Output].Columns[Price_Numeric]"
+                      name="Price_Numeric" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Error Output].Columns[Price_ID]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Error Output].Columns[Price_ID]"
+                      name="Price_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Source_Product"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Source_Product"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Product$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Source_Product.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output].Columns[Product_Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output].ExternalColumns[Product_Name]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output].Columns[Product_Name]"
+                      name="Product_Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output].Columns[Image_URL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output].ExternalColumns[Image_URL]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output].Columns[Image_URL]"
+                      name="Image_URL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output].Columns[Product_ID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output].ExternalColumns[Product_ID]"
+                      lineageId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output].Columns[Product_ID]"
+                      name="Product_ID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output].ExternalColumns[Product_Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output].ExternalColumns[Image_URL]"
+                      dataType="wstr"
+                      length="255"
+                      name="Image_URL" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output].ExternalColumns[Product_ID]"
+                      dataType="r8"
+                      name="Product_ID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Error Output].Columns[Product_Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Error Output].Columns[Product_Name]"
+                      name="Product_Name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Error Output].Columns[Image_URL]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Error Output].Columns[Image_URL]"
+                      name="Image_URL" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Error Output].Columns[Product_ID]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Error Output].Columns[Product_ID]"
+                      name="Product_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Source_Promotions"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Source_Promotions"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">promotion$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Source_Promotions.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Product_Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Product_Name]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Product_Name]"
+                      name="Product_Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Raw_Stock_Quantity]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Raw_Stock_Quantity]"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Raw_Stock_Quantity]"
+                      name="Raw_Stock_Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Price]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Price]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Price]"
+                      name="Price"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Product_ID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Product_ID]"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Product_ID]"
+                      name="Product_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Price_ID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Price_ID]"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Price_ID]"
+                      name="Price_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Price_Numeric]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Price_Numeric]"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Price_Numeric]"
+                      name="Price_Numeric"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Stock_Quantity]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Stock_Quantity]"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].Columns[Stock_Quantity]"
+                      name="Stock_Quantity"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Product_Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Raw_Stock_Quantity]"
+                      dataType="r8"
+                      name="Raw_Stock_Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Price]"
+                      dataType="wstr"
+                      length="255"
+                      name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Product_ID]"
+                      dataType="r8"
+                      name="Product_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Price_ID]"
+                      dataType="r8"
+                      name="Price_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Price_Numeric]"
+                      dataType="r8"
+                      name="Price_Numeric" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output].ExternalColumns[Stock_Quantity]"
+                      dataType="r8"
+                      name="Stock_Quantity" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Product_Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Product_Name]"
+                      name="Product_Name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Raw_Stock_Quantity]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Raw_Stock_Quantity]"
+                      name="Raw_Stock_Quantity" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Price]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Price]"
+                      name="Price" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Product_ID]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Product_ID]"
+                      name="Product_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Price_ID]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Price_ID]"
+                      name="Price_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Price_Numeric]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Price_Numeric]"
+                      name="Price_Numeric" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Stock_Quantity]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[Stock_Quantity]"
+                      name="Stock_Quantity" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Source_Sales"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Source_Sales"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sales$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Source_Sales.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Product_Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Product_Name]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Product_Name]"
+                      name="Product_Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Raw_Stock_Quantity]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Raw_Stock_Quantity]"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Raw_Stock_Quantity]"
+                      name="Raw_Stock_Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Price]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Price]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Price]"
+                      name="Price"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Product_ID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Product_ID]"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Product_ID]"
+                      name="Product_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Price_ID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Price_ID]"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Price_ID]"
+                      name="Price_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Price_Numeric]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Price_Numeric]"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Price_Numeric]"
+                      name="Price_Numeric"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Stock_Quantity]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Stock_Quantity]"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].Columns[Stock_Quantity]"
+                      name="Stock_Quantity"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Product_Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Raw_Stock_Quantity]"
+                      dataType="r8"
+                      name="Raw_Stock_Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Price]"
+                      dataType="wstr"
+                      length="255"
+                      name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Product_ID]"
+                      dataType="r8"
+                      name="Product_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Price_ID]"
+                      dataType="r8"
+                      name="Price_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Price_Numeric]"
+                      dataType="r8"
+                      name="Price_Numeric" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output].ExternalColumns[Stock_Quantity]"
+                      dataType="r8"
+                      name="Stock_Quantity" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Product_Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Product_Name]"
+                      name="Product_Name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Raw_Stock_Quantity]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Raw_Stock_Quantity]"
+                      name="Raw_Stock_Quantity" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Price]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Price]"
+                      name="Price" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Product_ID]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Product_ID]"
+                      name="Product_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Price_ID]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Price_ID]"
+                      name="Price_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Price_Numeric]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Price_Numeric]"
+                      name="Price_Numeric" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Stock_Quantity]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[Stock_Quantity]"
+                      name="Stock_Quantity" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Source_stock"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Source_stock"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">stock$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Source_stock.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Output].Columns[Product_ID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Output].ExternalColumns[Product_ID]"
+                      lineageId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Output].Columns[Product_ID]"
+                      name="Product_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Output].Columns[Stock_Quantity]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Output].ExternalColumns[Stock_Quantity]"
+                      lineageId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Output].Columns[Stock_Quantity]"
+                      name="Stock_Quantity"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Output].ExternalColumns[Product_ID]"
+                      dataType="r8"
+                      name="Product_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Output].ExternalColumns[Stock_Quantity]"
+                      dataType="r8"
+                      name="Stock_Quantity" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Error Output].Columns[Product_ID]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Error Output].Columns[Product_ID]"
+                      name="Product_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Error Output].Columns[Stock_Quantity]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Error Output].Columns[Stock_Quantity]"
+                      name="Stock_Quantity" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\stock Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="stock Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"stock Destination"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\stock Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ANH\ANH.Fish.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[ANH\ANH.Fish.sa]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\stock Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\stock Destination.Inputs[ADO NET Destination Input].ExternalColumns[Product_ID]"
+                      dataType="r8"
+                      name="Product_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\stock Destination.Inputs[ADO NET Destination Input].ExternalColumns[Stock_Quantity]"
+                      dataType="r8"
+                      name="Stock_Quantity" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\stock Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\stock Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\stock Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\stock Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\stock Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\stock Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Excel Source Output]"
+              endId="Package\Data Flow Task\Condition Destination.Inputs[ADO NET Destination Input]"
+              name="Excel Source Output"
+              startId="Package\Data Flow Task\Source_Condition.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Excel Source Output1]"
+              endId="Package\Data Flow Task\Price Destination.Inputs[ADO NET Destination Input]"
+              name="Excel Source Output"
+              startId="Package\Data Flow Task\Source_Price.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Excel Source Output2]"
+              endId="Package\Data Flow Task\Product Destination.Inputs[ADO NET Destination Input]"
+              name="Excel Source Output"
+              startId="Package\Data Flow Task\Source_Product.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Excel Source Output3]"
+              endId="Package\Data Flow Task\Promotions Destination.Inputs[ADO NET Destination Input]"
+              name="Excel Source Output"
+              startId="Package\Data Flow Task\Source_Promotions.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Excel Source Output4]"
+              endId="Package\Data Flow Task\Sales Destination.Inputs[ADO NET Destination Input]"
+              name="Excel Source Output"
+              startId="Package\Data Flow Task\Source_Sales.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Excel Source Output5]"
+              endId="Package\Data Flow Task\stock Destination.Inputs[ADO NET Destination Input]"
+              name="Excel Source Output"
+              startId="Package\Data Flow Task\Source_stock.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Data Flow Task"
+          TopLeft="29.8749989103526,116.342104046134" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Data Flow Task\Source_Condition"
+          TopLeft="28.0000016763806,18.9736847213761" />
+        <NodeLayout
+          Size="181.333333333334,42.6666666666667"
+          Id="Package\Data Flow Task\Condition Destination"
+          TopLeft="249.24999312684,14.7631587812114" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Excel Source Output]"
+          TopLeft="192.000001676381,38.2017550846271">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57.249991450459,0"
+              Start="0,0"
+              End="49.749991450459,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.749991450459,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="144,42.6666666666667"
+          Id="Package\Data Flow Task\Source_Price"
+          TopLeft="30.5000042468308,89.9210530222288" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\Data Flow Task\Source_Product"
+          TopLeft="36.8749983515591,147.105261542708" />
+        <NodeLayout
+          Size="160,42.6666666666667"
+          Id="Package\Data Flow Task\Price Destination"
+          TopLeft="256.249988544733,97.8421041888709" />
+        <NodeLayout
+          Size="173.333333333334,42.6666666666667"
+          Id="Package\Data Flow Task\Product Destination"
+          TopLeft="265.08332154279,153.263156211938" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Excel Source Output1]"
+          TopLeft="174.500004246831,115.214911938883">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="81.7499842979018,0"
+              Start="0,0"
+              End="74.2499842979018,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="74.2499842979018,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Excel Source Output2]"
+          TopLeft="192.874998351559,171.517542210656">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.2083231912308,0"
+              Start="0,0"
+              End="64.7083231912308,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="64.7083231912308,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="173.333333333334,42.6666666666667"
+          Id="Package\Data Flow Task\Source_Promotions"
+          TopLeft="39.3749982398004,219.631576535857" />
+        <NodeLayout
+          Size="190.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\Promotions Destination"
+          TopLeft="249.249995809049,223.921051880329" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Excel Source Output3]"
+          TopLeft="212.708331573134,243.109647541427">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="36.5416642359149,0"
+              Start="0,0"
+              End="29.0416642359149,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="29.0416642359149,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="146.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\Source_Sales"
+          TopLeft="45.6249979604036,294.210523085416" />
+        <NodeLayout
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\Sales Destination"
+          TopLeft="264.374988181517,291.210523228153" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Excel Source Output4]"
+          TopLeft="192.29166462707,314.043856490118">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.0833235544467,0"
+              Start="0,0"
+              End="64.5833235544467,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="64.5833235544467,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="144,42.6666666666667"
+          Id="Package\Data Flow Task\Source_stock"
+          TopLeft="52.3750059511511,351.078945550397" />
+        <NodeLayout
+          Size="161.333333333334,42.6666666666667"
+          Id="Package\Data Flow Task\stock Destination"
+          TopLeft="240.499989494682,358.166663098231" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Excel Source Output5]"
+          TopLeft="196.375005951151,375.956137657647">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44.1249835435306,0"
+              Start="0,0"
+              End="36.6249835435306,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.6249835435306,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Source_Condition">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Condition Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Source_Price">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Source_Product">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Price Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Product Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Source_Promotions">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Promotions Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Source_Sales">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Sales Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Source_stock">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\stock Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
